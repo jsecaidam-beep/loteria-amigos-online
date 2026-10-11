@@ -1,5 +1,9 @@
 # Lotería entre amigos · online
 
+## [▶ JUGAR AHORA](https://loteria-amigos-online.onrender.com/)
+
+Crea una sala y comparte la invitación. GitHub Pages redirige al servidor del juego.
+
 Repositorio: https://github.com/jsecaidam-beep/loteria-amigos-online
 
 Juego web multijugador en español, con 54 cartas JPG locales, sala por código, host transferible y tablero 4×4 individual. Node.js 22 o posterior; no requiere paquetes externos.
@@ -9,7 +13,7 @@ Juego web multijugador en español, con 54 cartas JPG locales, sala por código,
 1. Crear sala y compartir la invitación. Los demás entran con nombre y código.
 2. El creador es host y puede pasar el control antes de comenzar o entre rondas. Si se desconecta entre partidas, otro jugador puede tomarlo.
 3. El host elige tablero completo o línea y reparte. También juega con su propio tablero. En escritorio, la carta cantada ocupa la mitad del área de juego; en celular se apila sobre el tablero.
-4. El host canta manualmente; todos reciben la misma carta mediante SSE. La voz es opcional y depende del navegador. Cada jugador toca sus cartas; el servidor rechaza cartas todavía no cantadas.
+4. El host canta manualmente; todos reciben la misma carta mediante SSE. La voz es opcional y depende del navegador. Cada jugador toca sus cartas manualmente; cantar no marca ningún tablero y no se resaltan automáticamente las coincidencias. Si se le pasa una carta, queda sin marcar hasta que la toque. El servidor rechaza cartas todavía no cantadas.
 5. Se evalúan parejas consecutivas (1–2, 3–4…). Si un jugador no tiene ninguna de las dos cartas, suma un shot opcional o punto. Tenerla pero no marcarla no causa penalización.
 6. «¡Lotería!» valida el tablero o línea elegida. La primera reclamación válida termina la ronda; los demás reciben el aviso de fondo cuando está activo el modo fiesta.
 7. El host inicia otra ronda. Recargar conserva identidad y tablero; SSE vuelve a conectar automáticamente.
@@ -41,7 +45,7 @@ Variables: `PORT` (por defecto 3000), `DATA_DIR` (por defecto ./data), `NODE_ENV
 
 La lógica e integración se prueban con conexiones HTTP independientes, validación de permisos, SSE, baraja completa y victoria. Las partidas se guardan en JSON con reemplazo atómico y sobreviven reinicios si el disco es persistente. Salas sin conexión caducan tras 24 horas sin actividad. Límite de 24 jugadores por sala. Durante una partida no se agregan jugadores nuevos, pero los participantes pueden reconectar. Si el host abandona durante una partida, se debe reconectar para continuar: no se reasigna automáticamente el control en pleno juego.
 
-El código está preparado para este repositorio; el alojamiento público sigue pendiente. Se requiere activar el servicio y probar dos dispositivos por Internet antes de considerar terminada la entrega. Tampoco se ha realizado revisión visual en navegadores reales ni prueba de carga.
+Servicio público desplegado en Render: https://loteria-amigos-online.onrender.com/. Se verificó la pantalla del host en navegador y la API multijugador por HTTPS. Las pruebas comprueban permisos, sincronización SSE, penalizaciones por parejas y reclamación del ganador. No se ha realizado una prueba de carga ni una prueba en dispositivos físicos iOS/Android.
 
 ## Cartas y referencias
 
